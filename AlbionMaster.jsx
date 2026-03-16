@@ -933,7 +933,7 @@ function MarketScannerApp() {
   const [sortConfig, setSortConfig] = useState({ key: 'netProfit', direction: 'desc' });
   
   // Custom states added for the redesigned UI
-  const [showFilters, setShowFilters] = useState(true);
+  const [showFilters, setShowFilters] = useState(false);
   const fetchIdRef = useRef(0);
 
   // Log errors to console only
