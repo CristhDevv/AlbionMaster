@@ -806,8 +806,165 @@ const CSS = `
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    .main-content { padding: 12px; }
-    .header { flex-direction: column; gap: 10px; }
+    .main-content { padding: 10px; }
+
+    /* Hide desktop elements on mobile */
+    .header { display: none !important; }
+    .top-banner { display: none !important; }
+    .filters-container { display: none !important; }
+    .table-wrap { background: none; border: none; border-radius: 0; }
+    .table-scroll { display: none !important; }
+
+    /* Mobile Header */
+    .mobile-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 14px;
+      background: linear-gradient(135deg, #0d1127 0%, #131a35 100%);
+      border: 1px solid #1a2548; border-radius: 8px; margin-bottom: 10px;
+    }
+    .mobile-header .logo { font-size: 18px; }
+    .mobile-header-meta {
+      font-size: 10px; color: #546a8d; padding: 0 14px; margin-bottom: 10px;
+    }
+
+    /* Mobile Banner */
+    .mobile-banner {
+      background: linear-gradient(135deg, #0b2a1f 0%, #0d1f35 50%, #1a0d30 100%);
+      border: 1px solid #00ff8844; border-radius: 8px;
+      padding: 12px 14px; margin-bottom: 10px;
+      position: relative; overflow: hidden;
+    }
+    .mobile-banner::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, #00ff88, #00d4ff, #00ff88);
+      background-size: 200% 100%; animation: shimmer 3s linear infinite;
+    }
+    .mobile-banner-line1 {
+      font-size: 10px; font-weight: 700; color: #00ff88;
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .mobile-banner-line2 {
+      font-size: 13px; color: #e2e8f0; margin-bottom: 4px;
+      display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+    }
+    .mobile-banner-line3 { font-size: 12px; color: #b0c4d8; }
+    .mobile-banner-line3 strong { color: #00ff88; }
+    .mobile-banner-line3 .cyan { color: #00d4ff; font-weight: 600; }
+
+    /* Mobile Sort Bar */
+    .mobile-sort-bar {
+      display: flex; gap: 6px; align-items: center; padding: 8px 0;
+      margin-bottom: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .mobile-sort-bar-label {
+      font-size: 10px; color: #546a8d; white-space: nowrap;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .mobile-sort-btn {
+      background: #111b38; border: 1px solid #1a2548; color: #8899aa;
+      padding: 6px 12px; border-radius: 4px; font-family: inherit;
+      font-size: 11px; cursor: pointer; white-space: nowrap; transition: all 0.15s;
+    }
+    .mobile-sort-btn.active {
+      background: #00d4ff22; border-color: #00d4ff; color: #00d4ff; font-weight: 600;
+    }
+
+    /* Mobile Cards */
+    .cards-container { display: flex; flex-direction: column; gap: 10px; }
+    .mobile-card {
+      background: #080f1c; border: 1px solid #112240;
+      border-radius: 8px; padding: 14px; width: 100%;
+    }
+    .mobile-card-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    }
+    .mobile-card-item-name {
+      font-weight: 700; color: #e2e8f0; font-size: 13px; line-height: 1.3;
+    }
+    .mobile-card-item-meta { font-size: 10px; color: #546a8d; }
+    .mobile-card-route {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 0; border-top: 1px solid #112240;
+      border-bottom: 1px solid #112240; margin-bottom: 10px; font-size: 12px;
+    }
+    .mobile-card-route-arrow { color: #3a4f70; font-size: 14px; }
+    .mobile-card-profit-row {
+      display: flex; justify-content: space-between;
+      align-items: baseline; margin-bottom: 6px;
+    }
+    .mobile-card-profit { font-size: 18px; font-weight: 700; color: #00ff88; }
+    .mobile-card-margin { font-size: 16px; font-weight: 700; color: #00d4ff; }
+    .mobile-card-prices {
+      display: flex; justify-content: space-between;
+      font-size: 11px; color: #6a8ab0; margin-bottom: 4px;
+    }
+    .mobile-card-details {
+      display: flex; gap: 12px; font-size: 10px; color: #546a8d; flex-wrap: wrap;
+    }
+    .mobile-card-details span { white-space: nowrap; }
+
+    /* Mobile Pagination */
+    .mobile-pagination {
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; padding: 16px 0; margin-top: 8px;
+    }
+    .mobile-pagination-btn {
+      background: #111b38; border: 1px solid #1a2548; color: #c8d6e5;
+      padding: 0 20px; border-radius: 6px; font-family: inherit;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      min-height: 44px; display: flex; align-items: center;
+      justify-content: center; transition: all 0.15s;
+    }
+    .mobile-pagination-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .mobile-pagination-btn:not(:disabled):active {
+      background: #00d4ff22; border-color: #00d4ff; color: #00d4ff;
+    }
+    .mobile-pagination-info {
+      font-size: 12px; color: #6a8ab0; min-width: 100px; text-align: center;
+    }
+
+    /* Mobile Bottom Sheet */
+    .mobile-filter-fab {
+      position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, #00d4ff22, #00ff8822);
+      border: 1px solid #00d4ff66; color: #00d4ff;
+      padding: 12px 28px; border-radius: 24px; font-family: inherit;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      min-height: 44px; display: flex; align-items: center; gap: 8px;
+    }
+    .mobile-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7); z-index: 1001;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .mobile-bottom-sheet {
+      position: fixed; bottom: 0; left: 0; right: 0; height: 80vh;
+      background: #0a0e1a; border-top: 2px solid #00d4ff44;
+      border-radius: 16px 16px 0 0; z-index: 1002;
+      overflow-y: auto; padding: 20px 16px 40px;
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .mobile-bottom-sheet-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #1a2548;
+    }
+    .mobile-bottom-sheet-title { font-size: 16px; font-weight: 700; color: #00d4ff; }
+    .mobile-bottom-sheet-close {
+      background: #1a2548; border: 1px solid #2a3a5a; color: #c8d6e5;
+      width: 36px; height: 36px; border-radius: 50%;
+      font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+  }
+
+  /* Desktop: hide mobile-only elements */
+  @media (min-width: 769px) {
+    .mobile-header, .mobile-header-meta, .mobile-banner,
+    .mobile-sort-bar, .cards-container, .mobile-pagination,
+    .mobile-filter-fab, .mobile-overlay, .mobile-bottom-sheet { display: none !important; }
   }
 `;
 
@@ -935,6 +1092,22 @@ function MarketScannerApp() {
   // Custom states added for the redesigned UI
   const [showFilters, setShowFilters] = useState(false);
   const fetchIdRef = useRef(0);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
+  const [mobilePage, setMobilePage] = useState(1);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const cardsContainerRef = useRef(null);
+
+  // Mobile detection with resize listener + cleanup
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Reset mobile page when any filter changes
+  useEffect(() => {
+    setMobilePage(1);
+  }, [minMargin, minVolume, freshOnly, maxTravelTime, selectedCities, selectedCategories, enchantmentFilters, sortConfig]);
 
   // Log errors to console only
   useEffect(() => {
@@ -1262,6 +1435,21 @@ function MarketScannerApp() {
             </div>
           </div>
 
+          {/* Mobile Header */}
+          <div className="mobile-header">
+            <div className="logo">⚔ ALBION MASTER</div>
+            <button className="refresh-btn" onClick={loadData} disabled={loading}>
+              <span className={loading ? 'spin' : ''}>⟳</span>
+              {loading ? '...' : 'Refresh'}
+            </button>
+          </div>
+          <div className="mobile-header-meta">
+            {loading && loadingProgress.total > 0
+              ? `Cargando... ${loadingProgress.loaded}/${loadingProgress.total} batches`
+              : lastUpdate ? `Actualizado ${relativeTime(lastUpdate)}` : 'Sin datos'}
+            {nextRefresh > 0 && !loading && ` · Auto-refresh: ${countdownStr}`}
+          </div>
+
 
 
 
@@ -1319,6 +1507,26 @@ function MarketScannerApp() {
                       {topOpp.score.toFixed(3)}
                     </div>
                   </div>
+                </div>
+              </div>
+            )}
+
+            {/* Mobile Banner (compact 3-line version) */}
+            {topOpp && !loading && (
+              <div className="mobile-banner">
+                <div className="mobile-banner-line1">🏆 #1 RECOMENDACIÓN</div>
+                <div className="mobile-banner-line2">
+                  <ItemIcon itemId={topOpp.item.id} tier={topOpp.item.tier} />
+                  <span style={{ fontWeight: 700 }}>
+                    {getItemName(topOpp.item.baseId || topOpp.item.id) || topOpp.item.name}{topOpp.item.enchantLevel > 0 ? ` .${topOpp.item.enchantLevel}` : ''}
+                  </span>
+                  <span style={{ color: '#546a8d' }}>—</span>
+                  <span className="city-badge" style={cityBadgeStyle(topOpp.buyCity)}>{shortCityName(topOpp.buyCity)}</span>
+                  <span style={{ color: '#3a4f70' }}>→</span>
+                  <span className="city-badge" style={cityBadgeStyle(topOpp.sellCity)}>{shortCityName(topOpp.sellCity)}</span>
+                </div>
+                <div className="mobile-banner-line3">
+                  <strong>+{topOpp.netProfit.toLocaleString()} a.</strong> netos · <span className="cyan">{topOpp.marginPct.toFixed(1)}%</span> margen
                 </div>
               </div>
             )}
@@ -1658,6 +1866,102 @@ function MarketScannerApp() {
           )}
         </div>
 
+        {/* Mobile Sort + Cards + Pagination */}
+        {isMobile && !loading && filtered.length > 0 && (() => {
+          const MOBILE_PAGE_SIZE = 20;
+          const totalPages = Math.ceil(renderList.length / MOBILE_PAGE_SIZE);
+          const startIdx = (mobilePage - 1) * MOBILE_PAGE_SIZE;
+          const pageItems = renderList.slice(startIdx, startIdx + MOBILE_PAGE_SIZE);
+
+          return (
+            <>
+              <div className="mobile-sort-bar">
+                <span className="mobile-sort-bar-label">Ordenar:</span>
+                {[
+                  { key: 'netProfit', label: 'Ganancia ▼' },
+                  { key: 'marginPct', label: 'Margen' },
+                  { key: 'vol24h', label: 'Volumen' },
+                  { key: 'maxAge', label: 'Frescura' },
+                ].map(s => (
+                  <button
+                    key={s.key}
+                    className={`mobile-sort-btn ${sortConfig.key === s.key ? 'active' : ''}`}
+                    onClick={() => handleSort(s.key)}
+                  >
+                    {s.label}{sortConfig.key === s.key ? (sortConfig.direction === 'desc' ? ' ▼' : ' ▲') : ''}
+                  </button>
+                ))}
+              </div>
+
+              <div className="cards-container" ref={cardsContainerRef}>
+                {pageItems.map((o) => (
+                  <div key={o.key} className="mobile-card">
+                    <div className="mobile-card-header">
+                      <ItemIcon itemId={o.item.id} tier={o.item.tier} />
+                      <div>
+                        <div className="mobile-card-item-name">
+                          {getItemName(o.item.baseId || o.item.id) || o.item.name}
+                          {o.item.enchantLevel > 0 ? ` .${o.item.enchantLevel}` : ''}
+                        </div>
+                        <div className="mobile-card-item-meta">
+                          {o.item.enchantLevel > 0 ? `.${o.item.enchantLevel} · ` : ''}{o.item.tier}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mobile-card-route">
+                      <span>🏙️</span>
+                      <span className="city-badge" style={cityBadgeStyle(o.buyCity)}>{shortCityName(o.buyCity)}</span>
+                      <span className="mobile-card-route-arrow">→</span>
+                      <span className="city-badge" style={cityBadgeStyle(o.sellCity)}>{shortCityName(o.sellCity)}</span>
+                    </div>
+                    <div className="mobile-card-profit-row">
+                      <span className="mobile-card-profit">+{o.netProfit.toLocaleString()} a.</span>
+                      <span className="mobile-card-margin">{o.marginPct.toFixed(1)}%</span>
+                    </div>
+                    <div className="mobile-card-prices">
+                      <span>Compra: {o.buyPrice.toLocaleString()}</span>
+                      <span>Venta: {o.sellPrice.toLocaleString()}</span>
+                    </div>
+                    <div className="mobile-card-details">
+                      <span style={{ color: '#ff4466' }}>TAX: -{Math.floor(o.taxValSell + o.taxValBuy).toLocaleString()}</span>
+                      <span style={{ color: '#ffd700' }}>Vol: {formatNumber(o.vol24h)}</span>
+                      <span style={{ color: ageColor(o.maxAge) }}>📅 {formatAge(o.maxAge)}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {totalPages > 1 && (
+                <div className="mobile-pagination">
+                  <button
+                    className="mobile-pagination-btn"
+                    disabled={mobilePage <= 1}
+                    onClick={() => {
+                      setMobilePage(p => p - 1);
+                      cardsContainerRef.current?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    ← Anterior
+                  </button>
+                  <span className="mobile-pagination-info">
+                    Página {mobilePage} de {totalPages}
+                  </span>
+                  <button
+                    className="mobile-pagination-btn"
+                    disabled={mobilePage >= totalPages}
+                    onClick={() => {
+                      setMobilePage(p => p + 1);
+                      cardsContainerRef.current?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    Siguiente →
+                  </button>
+                </div>
+              )}
+            </>
+          );
+        })()}
+
         {/* Explicación de Uso */}
         <div style={{
           background: '#080f1c',
@@ -1716,6 +2020,115 @@ function MarketScannerApp() {
           </div>
         </div>{/* /main-content */}
       </div>{/* /app */}
+
+      {/* Mobile Bottom Sheet */}
+      {isMobile && showMobileFilters && (
+        <>
+          <div className="mobile-overlay" onClick={() => setShowMobileFilters(false)} />
+          <div className="mobile-bottom-sheet">
+            <div className="mobile-bottom-sheet-header">
+              <div className="mobile-bottom-sheet-title">⚙️ Filtros</div>
+              <button className="mobile-bottom-sheet-close" onClick={() => setShowMobileFilters(false)}>✕</button>
+            </div>
+            <div className="settings-page" style={{ maxWidth: '100%' }}>
+              {namesLoading ? (
+                <div style={{ color: '#00ff88', fontSize: 12, marginBottom: 12 }}>Cargando nombres...</div>
+              ) : namesError ? (
+                <div style={{ color: '#ffd700', fontSize: 12, marginBottom: 12 }}>⚠️ Nombres en inglés</div>
+              ) : null}
+              <div className="settings-section">
+                <div className="settings-section-title">📦 Categorías</div>
+                <div className="cat-controls">
+                  <button className="cat-ctrl-btn" onClick={() => setSelectedCategories(ALL_CATEGORIES.reduce((acc, c) => ({...acc, [c]: true}), {}))}>Seleccionar todo</button>
+                  <button className="cat-ctrl-btn" onClick={() => setSelectedCategories(ALL_CATEGORIES.reduce((acc, c) => ({...acc, [c]: false}), {}))}>Limpiar todo</button>
+                </div>
+                <div className="category-grid">
+                  {ALL_CATEGORIES.map(c => (
+                    <div key={c} className={`cat-btn ${selectedCategories[c] ? 'active' : ''}`} onClick={() => setSelectedCategories(prev => ({...prev, [c]: !prev[c]}))}>
+                      <span>{c}</span>
+                      <span className="cat-count">{categoryCounts[c] || 0}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="settings-section">
+                <div className="settings-section-title">✨ Encantamientos</div>
+                <div className="cat-controls">
+                  <button className="cat-ctrl-btn" onClick={() => setEnchantmentFilters({0:true, 1:true, 2:true, 3:true, 4:true})}>Todos</button>
+                </div>
+                <div className="category-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))' }}>
+                  <div className={`cat-btn ${enchantmentFilters[0] ? 'active' : ''}`} onClick={() => setEnchantmentFilters(p => ({...p, 0: !p[0]}))}><span>Base (0)</span></div>
+                  {[1, 2, 3, 4].map(level => (
+                    <div key={level} className={`cat-btn ${enchantmentFilters[level] ? 'active' : ''}`} onClick={() => setEnchantmentFilters(p => ({...p, [level]: !p[level]}))}><span>.{level}</span></div>
+                  ))}
+                </div>
+              </div>
+              <div className="settings-section">
+                <div className="settings-section-title">🏰 Ciudades</div>
+                <div className="cat-controls">
+                  <button className="cat-ctrl-btn" onClick={() => setSelectedCities(LOCATIONS.reduce((acc, c) => ({...acc, [c]: SAFE_CITIES.includes(c)}), {}))}>Solo seguras</button>
+                  <button className="cat-ctrl-btn" onClick={() => setSelectedCities(LOCATIONS.reduce((acc, c) => ({...acc, [c]: true}), {}))}>Todas</button>
+                </div>
+                <div className="category-grid">
+                  {SAFE_CITIES.map(c => (
+                    <div key={c} className={`cat-btn ${selectedCities[c] ? 'active' : ''}`} onClick={() => { const n = Object.values(selectedCities).filter(v => v).length; if (selectedCities[c] && n <= 2) return; setSelectedCities(prev => ({...prev, [c]: !prev[c]})); }}>
+                      <span>🛡️ {c}</span>
+                    </div>
+                  ))}
+                  {PVP_CITIES.map(c => (
+                    <div key={c} className={`cat-btn ${selectedCities[c] ? 'active' : ''}`} style={selectedCities[c] ? { background: '#ff446622', borderColor: '#ff4466' } : {}} onClick={() => { const n = Object.values(selectedCities).filter(v => v).length; if (selectedCities[c] && n <= 2) return; setSelectedCities(prev => ({...prev, [c]: !prev[c]})); }}>
+                      <span style={selectedCities[c] ? { color: '#ff8899' } : {}}>⚔️ {c}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="settings-section">
+                <div className="settings-section-title">📊 Impuestos y Umbrales</div>
+                <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
+                  <div className="filter-group">
+                    <span className="filter-label">Tax Venta %</span>
+                    <input type="number" step="0.5" min="0" max="30" value={taxSell} onChange={e => setTaxSell(Number(e.target.value))} className="val-input" />
+                  </div>
+                  <div className="filter-group">
+                    <span className="filter-label">Tax Compra %</span>
+                    <input type="number" step="0.5" min="0" max="30" value={taxBuy} onChange={e => setTaxBuy(Number(e.target.value))} className="val-input" />
+                  </div>
+                  <div className="filter-group">
+                    <span className="filter-label">Tiempo máx</span>
+                    <select className="filter-select" value={maxTravelTime} onChange={e => setMaxTravelTime(Number(e.target.value))}>
+                      {[5, 10, 20, 30, 45].map(v => <option key={v} value={v}>{v} min</option>)}
+                    </select>
+                  </div>
+                  <div className="filter-group">
+                    <span className="filter-label">Margen Mín</span>
+                    <input type="range" min="0" max="100" value={minMargin} onChange={e => setMinMargin(Number(e.target.value))} />
+                    <span className="filter-val">{minMargin}%</span>
+                  </div>
+                  <div className="filter-group">
+                    <span className="filter-label">Vol mín</span>
+                    <input type="range" min="0" max="5000" step="50" value={minVolume} onChange={e => setMinVolume(Number(e.target.value))} />
+                    <span className="filter-val">{formatNumber(minVolume)}</span>
+                  </div>
+                  <div className="filter-group">
+                    <label className="checkbox-label">
+                      <input type="checkbox" checked={freshOnly} onChange={e => setFreshOnly(e.target.checked)} />
+                      Solo frescos (&lt;1h)
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Mobile Filter FAB */}
+      {isMobile && !showMobileFilters && !loading && (
+        <button className="mobile-filter-fab" onClick={() => setShowMobileFilters(true)}>
+          ⚙️ Filtros
+        </button>
+      )}
+
     </>
   );
 }
